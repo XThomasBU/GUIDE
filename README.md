@@ -8,7 +8,7 @@
 ![Class vs Domain NMI](assets/PACS_class_vs_domain_nmi.png)
 
 - GUIDE is implemented as an algorithm in the `domainbed/algorithms.py` file.
-- See [Precompute Features](#precompute-features) for instructions on how to save the features ($\bm{\Psi}$) to disk.
+- See [Precompute Features](#precompute-features) for instructions on how to save the features (${\Psi}$) to disk.
 - Follow DomainBed's instructions to run GUIDE on the datasets.
 
 # Precompute Features
