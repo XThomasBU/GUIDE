@@ -439,50 +439,25 @@ if __name__ == "__main__":
 
         # Align centroids
         # -------------------------------
-        # Normalize Before Mapping
-        # -------------------------------
-        # Compute normalization parameters for the source (learned) and target (original) centroids.
-
-        source_mean = np.mean(train_cluster_clusters, axis=0)
-        source_std = np.std(train_cluster_clusters, axis=0)
-        target_mean = np.mean(train_org_clusters, axis=0)
-        target_std = np.std(train_org_clusters, axis=0)
-
-        cluster_centroids_train_norm = (
-            train_cluster_clusters - source_mean
-        ) / source_std
-        org_train_cluster_centroids_norm = (
-            train_org_clusters - target_mean
-        ) / target_std
-
-        # -------------------------------
         # Fit RBF Kernel Ridge Regression for Mapping
         # -------------------------------
-        print(
-            "Fitting an RBF mapping from learned cluster space to original space (normalized)."
-        )
-        # gamma = 1 / (2 * np.var(cluster_centroids_train_norm))
-        pairwise_dists = euclidean_distances(
-            cluster_centroids_train_norm, cluster_centroids_train_norm
-        )
+        print("Fitting an RBF mapping from learned cluster space to original space (raw features).")
+
+        # Compute pairwise distances for gamma calculation
+        pairwise_dists = euclidean_distances(train_cluster_clusters, train_cluster_clusters)
         median_dist = np.median(pairwise_dists)
         gamma = 1.0 / (2 * median_dist**2)
         print("Gamma: ", gamma)
+
+        # Fit Kernel Ridge Regression without normalization
         reg = KernelRidge(kernel="rbf", alpha=1.0, gamma=gamma)
-        reg.fit(cluster_centroids_train_norm, org_train_cluster_centroids_norm)
+        reg.fit(train_cluster_clusters, train_org_clusters)
 
         # -------------------------------
         # Transform Training and Test Centroids
         # -------------------------------
-        train_cluster_centroids = (
-            train_cluster_centroids - source_mean
-        ) / source_std  # Normalize
         train_centroids_aligned = reg.predict(train_cluster_centroids)
-        train_centroids_aligned = (train_centroids_aligned * target_std) + target_mean
-
-        test_cluster_centroids = (test_cluster_centroids - source_mean) / source_std
         test_centroids_aligned = reg.predict(test_cluster_centroids)
-        test_centroids_aligned = (test_centroids_aligned * target_std) + target_mean
 
         print("Train Centroids Aligned: ", train_centroids_aligned.shape)
         print("Test Centroids Aligned: ", test_centroids_aligned.shape)
