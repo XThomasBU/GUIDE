@@ -449,7 +449,7 @@ if __name__ == "__main__":
         gamma = 1.0 / (2 * median_dist**2)
         print("Gamma: ", gamma)
 
-        # Fit Kernel Ridge Regression without normalization
+        # Fit Kernel Ridge Regression
         reg = KernelRidge(kernel="rbf", alpha=1.0, gamma=gamma)
         reg.fit(train_cluster_clusters, train_org_clusters)
 
