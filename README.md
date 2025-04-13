@@ -1,5 +1,7 @@
 # PyTorch Code for ["What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization"](https://arxiv.org/abs/2503.06698)
 
+Xavier Thomas, Deepti Ghadiyaram
+
 
 - GUIDE is implemented as an algorithm in the `domainbed/algorithms.py` file.
 - See [Precompute Features](#precompute-features) for instructions on how to save the features (${\Psi}$) to disk.
