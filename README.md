@@ -47,3 +47,4 @@ python -m domainbed.scripts.sweep launch \
        --steps 5001 \
        --skip_confirmation \
 ```
+This code is built on top of [Domainbed](https://github.com/facebookresearch/DomainBed/tree/main), visit Domainbed for more details on running training sweeps, hyperparameter configurations, etc.
