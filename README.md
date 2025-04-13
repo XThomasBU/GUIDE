@@ -1,4 +1,4 @@
-# PyTorch Code for "What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization"
+# PyTorch Code for ["What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization"](https://arxiv.org/abs/2503.06698)
 
 ## Why Diffusion Features and why do we need it?
 - Provides rich domain-specific information to the classifier to aid in classification to new unseen domains.
