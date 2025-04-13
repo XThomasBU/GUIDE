@@ -48,3 +48,21 @@ python -m domainbed.scripts.sweep launch \
        --skip_confirmation \
 ```
 This code is built on top of [Domainbed](https://github.com/facebookresearch/DomainBed/tree/main), visit Domainbed for more details on running training sweeps, hyperparameter configurations, etc.
+
+## Citation
+
+```
+@misc{thomas2025whatslatentleveragingdiffusion,
+      title={What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization}, 
+      author={Xavier Thomas and Deepti Ghadiyaram},
+      year={2025},
+      eprint={2503.06698},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2503.06698}, 
+}
+```
+
+## License
+
+This source code is released under the MIT license, included [here](LICENSE).
