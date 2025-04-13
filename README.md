@@ -11,11 +11,11 @@
 - See [Precompute Features](#precompute-features) for instructions on how to save the features (${\Psi}$) to disk.
 - Follow DomainBed's instructions to run GUIDE on the datasets.
 
-# Precompute Features
+## Precompute Features
 - Run `run_precompute.sh` by setting the layer and model arguments.
 - The features are saved in the `domainbed/saved_feats` directory.
 
-## Exmaple:
+## Example:
 - For GUIDE-SD-2.1 on TerraIncognita dataset, run:
 
 1. Get Stable Diffusion 2.1 Features at up_ft:1 and timestep 50 for TerraIncognita
@@ -49,7 +49,11 @@ python -m domainbed.scripts.sweep launch \
 ```
 This code is built on top of [Domainbed](https://github.com/facebookresearch/DomainBed/tree/main), visit Domainbed for more details on running training sweeps, hyperparameter configurations, etc.
 
-## Citation
+# Results
+![Results](assets/results.png)
+
+
+# Citation
 
 ```
 @misc{thomas2025whatslatentleveragingdiffusion,
