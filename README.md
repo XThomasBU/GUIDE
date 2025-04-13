@@ -62,7 +62,3 @@ This code is built on top of [Domainbed](https://github.com/facebookresearch/Dom
       url={https://arxiv.org/abs/2503.06698}, 
 }
 ```
-
-## License
-
-This source code is released under the MIT license, included [here](LICENSE).
