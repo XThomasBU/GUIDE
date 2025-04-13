@@ -1,15 +1,8 @@
 # PyTorch Code for ["What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization"](https://arxiv.org/abs/2503.06698)
 
-## Why diffusion features and why do we need it?
-- Provides rich domain-specific information to the classifier to aid in classification to new unseen domains.
-
-
-![Diffusion Latent Space](assets/fig_latent_space.png)
-![Class vs Domain NMI](assets/PACS_class_vs_domain_nmi.png)
 
 - GUIDE is implemented as an algorithm in the `domainbed/algorithms.py` file.
 - See [Precompute Features](#precompute-features) for instructions on how to save the features (${\Psi}$) to disk.
-- Follow DomainBed's instructions to run GUIDE on the datasets.
 
 ## Precompute Features
 - Run `run_precompute.sh` by setting the layer and model arguments.
