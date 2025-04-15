@@ -1,63 +1,53 @@
-# PyTorch Code for ["What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization"](https://arxiv.org/abs/2503.06698)
-
-Xavier Thomas, Deepti Ghadiyaram
-
-
-- GUIDE is implemented as an algorithm in the `domainbed/algorithms.py` file.
-- See [Precompute Features](#precompute-features) for instructions on how to save the features (${\Psi}$) to disk.
-
-## Precompute Features
-- Run `run_precompute.sh` by setting the layer and model arguments.
-- The features are saved in the `domainbed/saved_feats` directory.
-
-## Example:
-- For GUIDE-SD-2.1 on TerraIncognita dataset, run:
-
-1. Get Stable Diffusion 2.1 Features at up_ft:1 and timestep 50 for TerraIncognita
-```bash
-bash run_precompute.sh
-```
-
-2. Run DomainBed on a single environment for the above setting
-```bash
-python3 -m domainbed.scripts.train_precompute\
-       --data_dir=domainbed/data/\
-       --algorithm GUIDE\
-       --dataset TerraIncognita\
-       --test_env 3\
-       --hparams '{"model_name": "stabilityai/stable-diffusion-2-1-base", "feature_model": "diffusion", "timestep": 50, "num_clusters": 5}'
-```
-
-3. Create a sweep
-```bash
-python -m domainbed.scripts.sweep launch \
-       --data_dir=domainbed/data \
-       --output_dir=GUIDE_SD_TI \
-       --command_launcher multi_gpu \
-       --algorithms GUIDE  \
-       --datasets TerraIncognita \
-       --n_hparams 1 \
-       --hparams '{"model_name": "stabilityai/stable-diffusion-2-1-base", "feature_model": "diffusion", "timestep": 50, "num_clusters": 5}'\
-       --n_trials 1 \
-       --steps 5001 \
-       --skip_confirmation \
-```
-This code is built on top of [Domainbed](https://github.com/facebookresearch/DomainBed/tree/main), visit Domainbed for more details on running training sweeps, hyperparameter configurations, etc.
-
-# Results
-![Results](assets/results.png)
+# Academic Project Page Template
+This is an academic paper project page template.
 
 
-# Citation
+Example project pages built using this template are:
+- https://horwitz.ai/probex
+- https://vision.huji.ac.il/probegen
+- https://horwitz.ai/mother
+- https://horwitz.ai/spectral_detuning
+- https://vision.huji.ac.il/ladeda
+- https://vision.huji.ac.il/dsire
+- https://horwitz.ai/podd
+- https://dreamix-video-editing.github.io
+- https://horwitz.ai/conffusion
+- https://horwitz.ai/3d_ads/
+- https://vision.huji.ac.il/ssrl_ad
+- https://vision.huji.ac.il/deepsim
 
-```
-@misc{thomas2025whatslatentleveragingdiffusion,
-      title={What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization}, 
-      author={Xavier Thomas and Deepti Ghadiyaram},
-      year={2025},
-      eprint={2503.06698},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2503.06698}, 
-}
-```
+
+
+## Start using the template
+To start using the template click on `Use this Template`.
+
+The template uses html for controlling the content and css for controlling the style. 
+To edit the websites contents edit the `index.html` file. It contains different HTML "building blocks", use whichever ones you need and comment out the rest.  
+
+**IMPORTANT!** Make sure to replace the `favicon.ico` under `static/images/` with one of your own, otherwise your favicon is going to be a dreambooth image of me.
+
+## Components
+- Teaser video
+- Images Carousel
+- Youtube embedding
+- Video Carousel
+- PDF Poster
+- Bibtex citation
+
+## Tips:
+- The `index.html` file contains comments instructing you what to replace, you should follow these comments.
+- The `meta` tags in the `index.html` file are used to provide metadata about your paper 
+(e.g. helping search engine index the website, showing a preview image when sharing the website, etc.)
+- The resolution of images and videos can usually be around 1920-2048, there rarely a need for better resolution that take longer to load. 
+- All the images and videos you use should be compressed to allow for fast loading of the website (and thus better indexing by search engines). For images, you can use [TinyPNG](https://tinypng.com), for videos you can need to find the tradeoff between size and quality.
+- When using large video files (larger than 10MB), it's better to use youtube for hosting the video as serving the video from the website can take time.
+- Using a tracker can help you analyze the traffic and see where users came from. [statcounter](https://statcounter.com) is a free, easy to use tracker that takes under 5 minutes to set up. 
+- This project page can also be made into a github pages website.
+- Replace the favicon to one of your choosing (the default one is of the Hebrew University). 
+- Suggestions, improvements and comments are welcome, simply open an issue or contact me. You can find my contact information at [https://horwitz.ai](https://horwitz.ai)
+
+## Acknowledgments
+Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
+
+## Website License
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.

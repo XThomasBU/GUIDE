@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://xavierohan.github.io" target="_blank">Xavier Thomas</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://deeptigp.github.io" target="_blank">Deepti Ghadiyaram</a><sup>1,2</sup>
+              </span>
+            </div>
+  
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Boston University, <sup>2</sup>Runway</span>
+            </div>
+  
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Arxiv PDF link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2503.06698.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+  
+                <!-- Github link -->
+                <span class="link-block">
+                  <a href="https://github.com/XThomasBU/GUIDE/tree/main" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+  
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2503.06698" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Teaser image -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body has-text-centered">
+      <img src="static/images/tsne_features_models.png" alt="Teaser image" style="max-width: 100%; height: auto;" />
+      <h2 class="subtitle has-text-centered">
+        t-SNE visualization of the latent space from different pre-training objectives: CLIP, DiT, MAE, ResNet-50 on the VLCS dataset. Note how the diffusion
+        features separate domains effectively, suggesting that latent domain structures can be captured without explicit supervision.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Domain Generalization aims to develop models that can generalize to novel and unseen data distributions. In this work, we study how model architectures and pre-training objectives impact feature richness and propose a method to effectively leverage them for domain generalization. Specifically, given a pre-trained feature space, we first discover latent domain structures, referred to as pseudo-domains, that capture domain-specific variations in an unsupervised manner. Next, we augment existing classifiers with these complementary pseudo-domain representations making them more amenable to diverse unseen test domains. We analyze how different pre-training feature spaces differ in the domain-specific variances they capture. Our empirical studies reveal that features from diffusion models excel at separating domains in the absence of explicit domain labels and capture nuanced domain-specific information. On 5 datasets, we show that our very simple framework improves generalization to unseen domains by a maximum test accuracy improvement of over 4% compared to the standard baseline Empirical Risk Minimization (ERM). Crucially, our method outperforms most algorithms that access domain labels during training.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Method section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          
+          <h3 class="title is-4">Pseudo-Domain Discovery</h3>
+          <p>
+            Our method builds on the insight that domain-specific structure can be inferred from pre-trained features without requiring domain labels.
+            We begin by identifying pseudo-domains via clustering in the latent space.
+          </p>
+
+          <figure class="mb-5">
+            <img src="static/images/ppseudo.png" alt="Pseudo-domain discovery" style="max-width: 100%; height: auto;" />
+            <figcaption class="is-size-6 has-text-grey mt-2">
+              DiT feature space on the PACS dataset. Note how the feature space captures domain-related variations (e.g., light sketches are grouped together and separated from darker ones; cartoons are separated from sketches, photos, and paintings, etc.).
+            </figcaption>
+          </figure>
+
+          <div class="mb-5">
+            <img src="static/images/clustering.png" alt="Clustering visualization" style="max-width: 100%; height: auto;" />
+          </div>
+
+          <figure class="has-text-centered mb-5">
+            <div style="width: 80%; margin: 0 auto;">
+              <img src="static/images/pseudo_domains.png" alt="Clustering visualization" style="width: 100%; height: auto;" />
+            </div>
+            <figcaption class="is-size-6 has-text-grey mt-2">
+              Pseudo-domains captured in the diffusion latent space of DiT on PACS. The clusters group images based on nuanced style-specific variances rather than class-specific variances.
+            </figcaption>
+          </figure>
+
+          <h3 class="title is-4">Quantifying Domain Separation</h3>
+          <p>
+            We quantify domain separation using the Normalized Mutual Information (NMI) score between cluster assignments
+            (with <code>K</code> = number of ground truth domains) and the corresponding domain labels. For example for the VLCS dataset shown below, we cluster with <code>K</code> = 4 and compute the NMI score between the cluster assignments and the domain labels.
+
+            In addition to Domain NMI scores, we also compute Class NMI scores in a similar fashion. This allows us to quantify the amount of class-specific information captured by the clusters.
+          </p>
+
+          <div>
+            <img src="static/images/dit_comp.png" alt="Domain separation comparison" style="max-width: 100%; height: auto;" />
+          </div>
+
+          <h3 class="title is-4">Domain vs Class NMI</h3>
+
+          <p>
+            To obtain domain-specific centroids from the clusters, ideally we would need a feature space that captures domain-specific information while being invariant to class-specific information. We can quantify this using the NMI scores we computed above. The ideal feature space would have high domain NMI and low class NMI.
+          </p>
+
+          <div class="has-text-centered mb-5">
+            <p class="title is-5 has-text-weight-semibold mb-2">
+              Normalized Mutual Information (NMI) – Domain Labels <span style="color: #48c78e;">↑</span>
+            </p>
+            <img src="static/images/domain_nmi.png" alt="Domain NMI scores" style="width: 80%; height: auto; margin: 0 auto;" />
+          </div>
+          
+          <div class="has-text-centered">
+            <p class="title is-5 has-text-weight-semibold mb-2">
+              Normalized Mutual Information (NMI) – Class Labels <span style="color: #f14668;">↓</span>
+            </p>
+            <img src="static/images/class_nmi.png" alt="Class NMI scores" style="width: 80%; height: auto; margin: 0 auto;" />
+          </div>
+
+          <figure class="has-text-centered mb-5">
+            <img src="static/images/VLCS_class_vs_domain_nmi.png" alt="VLCS domain vs class nmi" style="width: 70%; height: auto; margin: 0 auto;" />
+            <figcaption class="is-size-6 has-text-grey mt-2">
+              Comparison of domain and class NMI scores for different feature spaces on the VLCS dataset. DiT exhibits high domain NMI scores while having a low class NMI score.
+          </figure>
+
+          <div class="hero-body">
+            <div class="container">
+              <div id="results-carousel" class="carousel results-carousel">
+        
+                <div class="item">
+                  <img src="static/images/PACS_class_vs_domain_nmi.png" alt="PACS NMI comparison" style="width: 80%; display: block; margin: 0 auto;" />
+                  <h2 class="subtitle has-text-centered">
+                    PACS: domain vs class NMI comparison.
+                  </h2>
+                </div>
+        
+                <div class="item">
+                  <img src="static/images/VLCS_class_vs_domain_nmi.png" alt="VLCS NMI comparison" style="width: 80%; display: block; margin: 0 auto;" />
+                  <h2 class="subtitle has-text-centered">
+                    VLCS: comain vs class NMI comparison.
+                  </h2>
+                </div>
+        
+                <div class="item">
+                  <img src="static/images/TerraInc_class_vs_domain_nmi.png" alt="TerraIncognita NMI comparison" style="width: 80%; display: block; margin: 0 auto;" />
+                  <h2 class="subtitle has-text-centered">
+                    TerraIncognita: domain vs class NMI comparison.
+                  </h2>
+                </div>
+        
+                <div class="item">
+                  <img src="static/images/OfficeHome_class_vs_domain_nmi.png" alt="OfficeHome NMI comparison" style="width: 80%; display: block; margin: 0 auto;" />
+                  <h2 class="subtitle has-text-centered">
+                    OfficeHome: domain vs class NMI comparison.
+                  </h2>
+                </div>
+        
+                <div class="item">
+                  <img src="static/images/DomainNet_class_vs_domain_nmi.png" alt="DomainNet NMI comparison" style="width: 80%; display: block; margin: 0 auto;" />
+                  <h2 class="subtitle has-text-centered">
+                    DomainNet: domain vs class NMI comparison.
+                  </h2>
+                </div>
+        
+              </div>
+            </div>
+          </div>
+          
+
+          <h3 class="title is-4">
+            <strong>GUIDE</strong>: <strong>G</strong>eneralization using <strong>I</strong>nferred <strong>D</strong>omains from <strong>L</strong>atent <strong>E</strong>mbeddings
+          </h3>
+
+          To the standard classification pipeline, we append these pseudo-domain representations to the features coming from the ResNet50 backbone before passing them to the classifier. 
+          
+          <figure class="has-text-centered mb-5">
+            <div style="width: 100%; margin: 0 auto;">
+              <img src="static/images/pipeline.png" alt="Clustering visualization" style="width: 100%; height: auto;" />
+            </div>
+            <figcaption class="is-size-6 has-text-grey mt-2">
+              <strong>Training Pipeline.</strong>
+              The <span style="color: #23d160;">green-shaded region</span> represents the clustering and transformation step.
+              <span style="color: #23d160;">Green solid arrows</span> indicate gradient flow, while
+              <span style="color: #ff3860;">red arrows</span> represent non-gradient operations.
+              The feature extractor $\ \mathbf{\Psi}$ first clusters samples to compute the pseudo-domain centroids.
+              The transformation function $\ \mathcal{T}$ then transforms these centroids to the latent space of $\ \mathbf{\Phi}$, 
+              producing transformed pseudo-domain centroids, which are concatenated with the features from $\ \mathbf{\Phi}$, 
+              and sent to the classifier.
+            </figcaption>
+          </figure>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- End Method section -->
+
+<section class="section-">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 mb-6">DomainBed Results</h2>
+        <div class="content has-text-justified">
+          
+          <div class="has-text-centered mb-6">
+            <p class="title is-5 has-text-weight-semibold mb-2">
+              GUIDE on different feature spaces
+            </p>
+            <img src="static/images/guide_feat_space.png" alt="Class NMI scores" style="width: 80%; height: auto; margin: 0 auto;" />
+            <ul class="has-text-left mt-4" style="display: inline-block;">
+              <li><strong>Pseudo-domain features</strong> from diffusion models offered the best utility.</li>
+              <li><strong>DiT</strong> excelled on high-level domain shifts (e.g., PACS, VLCS).</li>
+              <li><strong>Stable Diffusion 2.1</strong> performed best on environmental and spatial shifts (e.g., TerraIncognita).</li>
+            </ul>
+          </div>
+          
+          <div class="has-text-centered">
+            <p class="title is-5 has-text-weight-semibold mb-2">
+              GUIDE against other approaches
+            </p>
+            <img src="static/images/domainbed.png" alt="Class NMI scores" style="width: 100%; height: auto; margin: 0 auto;" />
+            <ul class="has-text-left mt-4" style="display: inline-block;">
+              <li><strong>GUIDE</strong> outperforms both the baseline and other methods that rely on explicit ground truth domain labels during training.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- End video carousel -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@misc{thomas2025whatslatentleveragingdiffusion,
+        title={What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization}, 
+        author={Xavier Thomas and Deepti Ghadiyaram},
+        year={2025},
+        eprint={2503.06698},
+        archivePrefix={arXiv},
+        primaryClass={cs.LG},
+        url={https://arxiv.org/abs/2503.06698}, 
+  }</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
