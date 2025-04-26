@@ -116,21 +116,6 @@
     </div>
   </section>
 
-
-<!-- Teaser image -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body has-text-centered">
-      <img src="static/images/tsne_features_models.png" alt="Teaser image" style="max-width: 100%; height: auto;" />
-      <h2 class="subtitle has-text-centered">
-        t-SNE visualization of the latent space from different pre-training objectives: CLIP, DiT, MAE, ResNet-50 on the VLCS dataset. Note how the diffusion
-        features separate domains effectively, suggesting that latent domain structures can be captured without explicit supervision.
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser image -->
-
 <!-- Paper abstract -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
@@ -148,8 +133,24 @@
 </section>
 <!-- End paper abstract -->
 
-<!-- Method section -->
+
+<!-- Teaser image -->
 <section class="section">
+  <div class="container is-max-desktop">
+    <div class="hero-body has-text-centered">
+      <img src="static/images/tsne_features_models.png" alt="Teaser image" style="max-width: 80%; height: auto;" />
+      <h2 class="subtitle has-text-centered">
+        t-SNE visualization of the latent space from different pre-training objectives: CLIP, DiT, MAE, ResNet-50 on the VLCS dataset. Note how the diffusion
+        features from DiT separates the 4 domains (Caltech101, LabelMe, SUN09, VOC2007) effectively, suggesting that latent domain structures can be captured without explicit supervision.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+
+<!-- Method section -->
+<section class="section pt-0">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
