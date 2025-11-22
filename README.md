@@ -1,4 +1,4 @@
-# PyTorch Code for ["What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization"](https://arxiv.org/abs/2503.06698) (ICCV 2025)
+## PyTorch Code for ["What's in a Latent? Leveraging Diffusion Latent Space for Domain Generalization"](https://arxiv.org/abs/2503.06698) (ICCV 2025)
 
 Xavier Thomas, Deepti Ghadiyaram
 
